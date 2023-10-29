@@ -33,11 +33,11 @@ class _CreateProfileTwoState extends State<CreateProfileTwo> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextF(hintText: "Üniversite", controller: _universiteController),
+              TextF(hintText: "Üniversite", controller: _universiteController, borderColor: Colors.black, borderWidth: 2, textFieldWidth: 100,),
               const SizedBox(height: 20,),
-              TextF(hintText: "Bölüm", controller: _bolumController),
+              TextF(hintText: "Bölüm", controller: _bolumController, borderColor: Colors.black, borderWidth: 2, textFieldWidth: 100,),
               const SizedBox(height: 30,),
-              TextF(hintText: "tahmini saatlik ücret beklentiniz", controller: _yovmiyeTekrarController),
+              TextF(hintText: "tahmini saatlik ücret beklentiniz", controller: _yovmiyeTekrarController, borderColor: Colors.black, borderWidth: 2, textFieldWidth: 100,),
               Padding(
                 padding: EdgeInsets.all(40.0), // Tüm kenarlardan 30 padding ekler
                 child: Container(

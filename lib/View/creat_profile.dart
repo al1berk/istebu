@@ -74,9 +74,9 @@ class _CreateProfileState extends State<CreateProfile> {
                 ),
               ),
               SizedBox(height: 30,),
-              TextF(hintText: "İsim", controller: _isimController),
+              TextF(hintText: "İsim", controller: _isimController, borderColor: Colors.black, borderWidth: 2, textFieldWidth: 100,),
               SizedBox(height: 12,),
-              TextF(hintText: "Soyisim", controller: _soyisimController),
+              TextF(hintText: "Soyisim", controller: _soyisimController, borderColor: Colors.black, borderWidth: 2, textFieldWidth: 100,),
               SizedBox(height: 12,),
               Visibility(
                 visible: !isChecked, // control false olduğunda görünür, true olduğunda görünmez
