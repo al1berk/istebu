@@ -169,3 +169,24 @@ class WaveClipper extends CustomClipper<Path> {
     return false;
   }
 }
+class bosUyari extends StatelessWidget {
+  const bosUyari({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Text('Uyarı'),
+      content: Text('Lütfen bütün alanları doldurun!'),
+      actions: <Widget>[
+        TextButton(
+          child: Text('Kapat'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
+  }
+}

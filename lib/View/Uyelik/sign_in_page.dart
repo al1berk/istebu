@@ -199,11 +199,24 @@ class _SigninPageState extends State<SigninPage> {
                   // Eğer control false ise görünmez, true ise görünür
                   child: EButton(
                     onPressed: () {
-                      const uuid = Uuid();
-                      String uniqueId = uuid.v4();
-                      if (isChecked2) {
-                        print(numaraController.text);
-                        Calisan c = Calisan(
+                      if (isimController.text.isEmpty ||
+                          soyisimController.text.isEmpty ||
+                          numaraController.text.isEmpty ||
+                          emailController.text.isEmpty ||
+                          passwordController.text.isEmpty) {
+                        // Eksik alanları doldurun uyarısı
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return bosUyari();
+                          },
+                        );
+                      } else {
+                        // Tüm alanlar doldurulmuş, devam et
+                        const uuid = Uuid();
+                        String uniqueId = uuid.v4();
+                        if (isChecked2) {
+                          Calisan c = Calisan(
                             "",
                             0,
                             isimController.text,
@@ -213,27 +226,35 @@ class _SigninPageState extends State<SigninPage> {
                             "",
                             numaraController.text,
                             [],
-                            uniqueId);
-                        Get.to(CreateProfileTwo(
-                          calisan: c,
-                        ));
-                      }
-                      if (isChecked) {
-                        Musteri m = Musteri(
+                            uniqueId,
+                          );
+                          Get.to(CreateProfileTwo(
+                            calisan: c,
+                          ));
+                        }
+                        if (isChecked) {
+                          Musteri m = Musteri(
                             isimController.text,
                             soyisimController.text,
                             numaraController.text,
                             "",
                             "",
                             emailController.text,
-                            "", []);
+                            "",
+                            [],
+                          );
 
-                        Get.to(CreateProfile(musteri: m));
+                          Get.to(CreateProfile(musteri: m));
+                        }
                       }
                     },
                     buttonText: !isChecked ? "Next" : "Next",
                     color: Colors.purple,
                   ),
+
+
+
+
                 )
               ],
             ),

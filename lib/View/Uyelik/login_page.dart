@@ -94,8 +94,8 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             const SizedBox(height: 20),
                             TextF(
-                              hintText: "E-Posta",
-                              controller: _emailController,
+                              hintText: "şifre",
+                              controller: _passwordController,
                               textFieldWidth: 240,
                               borderColor: Colors.green,
                               borderWidth: 4.0,
