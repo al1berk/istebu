@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:istebu/View/ilanlar.dart';
-import 'package:istebu/View/sign_in_page.dart';
+import 'package:istebu/View/Uyelik/sign_in_page.dart';
 import 'package:istebu/View/widgets.dart';
 
 import 'creat_profile.dart';

@@ -2,29 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../ViewModel/kategori_view_model.dart';
+import '../../Model/is_alanları_model.dart';
+import '../../Model/Çalışan/calisan_model.dart';
+import '../../ViewModel/create_profile_view_model.dart';
 import 'kisiler.dart';
 
 class Kategori extends StatelessWidget {
   String title ;
-  final List<KategoriItem> items = [
-    KategoriItem(title: "Mobil Uygulama geliştirme", imageUrl: "assets/image.png"),
-    KategoriItem(title: "Web Sitesi Geliştirme", imageUrl: "assets/asd.jpeg"),
-    KategoriItem(title: "Mobil Uygulama geliştirme", imageUrl: "assets/image.png"),
-    KategoriItem(title: "Web Sitesi Geliştirme", imageUrl: "assets/asd.jpeg"),
-    KategoriItem(title: "Mobil Uygulama geliştirme", imageUrl: "assets/image.png"),
-    KategoriItem(title: "Web Sitesi Geliştirme", imageUrl: "assets/asd.jpeg"),
-    KategoriItem(title: "Mobil Uygulama geliştirme", imageUrl: "assets/image.png"),
-    KategoriItem(title: "Web Sitesi Geliştirme", imageUrl: "assets/asd.jpeg"),
-    KategoriItem(title: "Mobil Uygulama geliştirme", imageUrl: "assets/image.png"),
-    KategoriItem(title: "Web Sitesi Geliştirme", imageUrl: "assets/asd.jpeg"),
-    KategoriItem(title: "Mobil Uygulama geliştirme", imageUrl: "assets/image.png"),
-    KategoriItem(title: "Web Sitesi Geliştirme", imageUrl: "assets/asd.jpeg"),
-    KategoriItem(title: "Mobil Uygulama geliştirme", imageUrl: "assets/image.png"),
-    KategoriItem(title: "Web Sitesi Geliştirme", imageUrl: "assets/asd.jpeg"),
-  ];
+  final List<String> items;
+  
 
-  Kategori({super.key, required this.title});
+  Kategori({super.key, required this.title,required this.items});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,11 +33,12 @@ class Kategori extends StatelessWidget {
               ),
               child: ListTile(
                 leading: CircleAvatar(
-                  backgroundImage: AssetImage(item.imageUrl),
                 ),
-                title: Text(item.title),
-                onTap: () {
-                  Get.to(Kisiler(title: item.title));
+                title: Text(item),
+                onTap: () async {
+                  List<Calisan> calisanlar = await CreateProfileViewModel().getCalisanlar(item);
+
+                  Get.to(Kisiler(title: item, calisanlar: calisanlar,));
                 },
               ),
             ),

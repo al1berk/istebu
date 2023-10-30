@@ -8,7 +8,7 @@ import 'package:istebu/ViewModel/create_profile_view_model.dart';
 import 'package:multi_select_flutter/dialog/multi_select_dialog_field.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
 
-import 'ilanlar.dart';
+import '../ilanlar.dart';
 
 class CreateProfileTwo extends StatefulWidget {
   Calisan calisan;
@@ -20,6 +20,10 @@ class CreateProfileTwo extends StatefulWidget {
 
 class _CreateProfileTwoState extends State<CreateProfileTwo> {
   TextEditingController _universiteController = TextEditingController();
+  TextEditingController _ilController = TextEditingController();
+  TextEditingController _ilceController = TextEditingController();
+
+
   TextEditingController _bolumController = TextEditingController();
   TextEditingController _yovmiyeTekrarController = TextEditingController();
   List<String> secilenAlanlar = [];
@@ -39,6 +43,10 @@ class _CreateProfileTwoState extends State<CreateProfileTwo> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              TextF(hintText: "İl", controller: _ilController, borderColor: Colors.green, borderWidth: 3, textFieldWidth: 200,),
+              const SizedBox(height: 20,),
+              TextF(hintText: "İlçe", controller: _ilceController, borderColor: Colors.green, borderWidth: 3, textFieldWidth: 200,),
+              const SizedBox(height: 20,),
               TextF(hintText: "Üniversite", controller: _universiteController, borderColor: Colors.green, borderWidth: 3, textFieldWidth: 200,),
               const SizedBox(height: 20,),
               TextF(hintText: "Bölüm", controller: _bolumController, borderColor: Colors.green, borderWidth: 3, textFieldWidth: 200,),

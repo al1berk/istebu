@@ -1,12 +1,14 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:istebu/Model/M%C3%BC%C5%9Fteri/musteri.dart';
+import 'package:istebu/View/Uyelik/creat_profile.dart';
 import 'package:istebu/View/widgets.dart';
+import 'package:istebu/ViewModel/create_profile_view_model.dart';
 import 'package:uuid/uuid.dart';
-import '../Model/Çalışan/calisan_model.dart';
+import '../../Model/Çalışan/calisan_model.dart';
 import 'creat_profile_two.dart';
-import 'ilanlar.dart';
-
+import '../ilanlar.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
@@ -23,10 +25,10 @@ class _SigninPageState extends State<SigninPage> {
   final TextEditingController numaraController = TextEditingController();
   bool isChecked = false;
   bool isChecked2 = false;
+  CreateProfileViewModel viewModel = CreateProfileViewModel();
+
   @override
   Widget build(BuildContext context) {
-
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -36,7 +38,7 @@ class _SigninPageState extends State<SigninPage> {
         children: [
           Positioned(
             left: -80,
-            bottom:-90,
+            bottom: -90,
             child: Container(
               width: 200,
               height: 200,
@@ -50,7 +52,7 @@ class _SigninPageState extends State<SigninPage> {
             left: -145,
             bottom: 350,
             child: Transform.rotate(
-              angle: -pi*1.12 / 4,
+              angle: -pi * 1.12 / 4,
               child: CustomPaint(
                 size: const Size(700, 1),
                 painter: SinusWavePainter(),
@@ -61,38 +63,38 @@ class _SigninPageState extends State<SigninPage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     const Column(
-
                       children: [
-
-                        ProfilResmiWidget(c: null,),
-
+                        ProfilResmiWidget(
+                          c: null,
+                        ),
                         Text(
                           "   Profil\nFotoğrafı",
                           style: TextStyle(
                             fontSize: 20,
                           ),
                         ),
-                        SizedBox(height: 50,)
-                        ,
+                        SizedBox(
+                          height: 50,
+                        ),
                         Text(
                           "Create\nAccount",
                           style: TextStyle(
                               fontSize: 35,
                               fontWeight: FontWeight.bold,
-                              color: Colors.green
-                          ),
+                              color: Colors.green),
                         ),
-                        SizedBox(height: 200,)
-
-                      ],),
-                    SizedBox(width: 30,),
-
+                        SizedBox(
+                          height: 200,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      width: 30,
+                    ),
                     Column(
                       children: [
                         TextF(
@@ -181,8 +183,7 @@ class _SigninPageState extends State<SigninPage> {
                             print(isChecked);
                             isChecked = value ?? false;
                             print(isChecked);
-                          }
-                          );
+                          });
                           print(isChecked);
                         },
                       ),
@@ -218,10 +219,19 @@ class _SigninPageState extends State<SigninPage> {
                         ));
                       }
                       if (isChecked) {
-                        Get.offAll(Ilanlar());
+                        Musteri m = Musteri(
+                            isimController.text,
+                            soyisimController.text,
+                            numaraController.text,
+                            "",
+                            "",
+                            emailController.text,
+                            "", []);
+
+                        Get.to(CreateProfile(musteri: m));
                       }
                     },
-                    buttonText: !isChecked ? "Next" : "Sign In",
+                    buttonText: !isChecked ? "Next" : "Next",
                     color: Colors.purple,
                   ),
                 )
