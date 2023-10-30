@@ -1,22 +1,31 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:istebu/View/widgets.dart';
+import 'package:uuid/uuid.dart';
+import '../Model/Çalışan/calisan_model.dart';
+import 'creat_profile_two.dart';
+import 'ilanlar.dart';
 
 
-
-
-
-class SigninPage extends StatelessWidget {
-  const SigninPage({Key? key});
+class SigninPage extends StatefulWidget {
+  const SigninPage({super.key});
 
   @override
+  State<SigninPage> createState() => _SigninPageState();
+}
+
+class _SigninPageState extends State<SigninPage> {
+  final TextEditingController isimController = TextEditingController();
+  final TextEditingController soyisimController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController numaraController = TextEditingController();
+  bool isChecked = false;
+  bool isChecked2 = false;
+  @override
   Widget build(BuildContext context) {
-    final TextEditingController isimController = TextEditingController();
-    final TextEditingController soyisimController = TextEditingController();
-    final TextEditingController emailController = TextEditingController();
-    final TextEditingController passwordController = TextEditingController();
-    final TextEditingController passwordTekrarController = TextEditingController();
+
 
     return Scaffold(
       appBar: AppBar(
@@ -26,14 +35,14 @@ class SigninPage extends StatelessWidget {
       body: Stack(
         children: [
           Positioned(
-            left: -80, // Ayarlayabilirsiniz
-            bottom:-90, // Ayarlayabilirsiniz
+            left: -80,
+            bottom:-90,
             child: Container(
-              width: 200, // Ayarlayabilirsiniz
-              height: 200, // Ayarlayabilirsiniz
+              width: 200,
+              height: 200,
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.purple, // Mor renk
+                color: Colors.purple,
               ),
             ),
           ),
@@ -107,6 +116,16 @@ class SigninPage extends StatelessWidget {
                           height: 16,
                         ),
                         TextF(
+                          hintText: "Telefon Numarası",
+                          controller: numaraController,
+                          textFieldWidth: 200,
+                          borderColor: Colors.green,
+                          borderWidth: 3,
+                        ),
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        TextF(
                           hintText: "E-Posta",
                           controller: emailController,
                           textFieldWidth: 200,
@@ -123,23 +142,92 @@ class SigninPage extends StatelessWidget {
                           borderColor: Colors.green,
                           borderWidth: 3.0,
                         ),
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        EButton(
-                          onPressed: () {},
-                          buttonText: "Sign in",
-                          color: Colors.purple,
-                        ),
                       ],
                     ),
                   ],
                 ),
+                Visibility(
+                  visible: !isChecked,
+                  // control false olduğunda görünür, true olduğunda görünmez
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 30),
+                      Checkbox(
+                        value: isChecked2,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isChecked2 = value ?? false;
+                          });
+                        },
+                      ),
+                      const Text(
+                        'Öğrenciyim/Çalışmak istiyorum',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ],
+                  ),
+                ),
+                Visibility(
+                  visible: !isChecked2,
+                  // control false olduğunda görünür, true olduğunda görünmez
+                  child: Row(
+                    children: [
+                      const SizedBox(width: 30),
+                      Checkbox(
+                        value: isChecked,
+                        onChanged: (bool? value) {
+                          print(isChecked);
+                          setState(() {
+                            print(isChecked);
+                            isChecked = value ?? false;
+                            print(isChecked);
+                          }
+                          );
+                          print(isChecked);
+                        },
+                      ),
+                      const Text(
+                        'Sadece İşverenim',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ],
+                  ),
+                ),
+                Visibility(
+                  visible: isChecked || isChecked2,
+                  // Eğer control false ise görünmez, true ise görünür
+                  child: EButton(
+                    onPressed: () {
+                      const uuid = Uuid();
+                      String uniqueId = uuid.v4();
+                      if (isChecked2) {
+                        print(numaraController.text);
+                        Calisan c = Calisan(
+                            "",
+                            0,
+                            isimController.text,
+                            soyisimController.text,
+                            [],
+                            "",
+                            "",
+                            numaraController.text,
+                            [],
+                            uniqueId);
+                        Get.to(CreateProfileTwo(
+                          calisan: c,
+                        ));
+                      }
+                      if (isChecked) {
+                        Get.offAll(Ilanlar());
+                      }
+                    },
+                    buttonText: !isChecked ? "Next" : "Sign In",
+                    color: Colors.purple,
+                  ),
+                )
               ],
             ),
           ),
-
-
         ],
       ),
     );

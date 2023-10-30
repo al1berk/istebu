@@ -1,13 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-
+import 'package:istebu/Model/is_alanlar%C4%B1_model.dart';
 import 'kategori.dart';
 
 class KategorilerCenteredContent extends StatelessWidget {
-  final List<String> imagePaths = ['assets/image.png','assets/asd.jpeg','assets/image.png','assets/asd.jpeg','assets/image.png','assets/asd.jpeg','assets/image.png','assets/asd.jpeg','assets/image.png','assets/asd.jpeg','assets/image.png','assets/asd.jpeg','assets/image.png','assets/asd.jpeg','assets/image.png','assets/asd.jpeg','assets/image.png','assets/asd.jpeg','assets/image.png','assets/asd.jpeg'];
-  final List<String> kategoriAdlari = ["1. Kategori","Yazılım","3. Kategori","4. Kategori","5. Kategori","6. Kategori","7. Kategori","8. Kategori","9. Kategori","10. Kategori","11. Kategori","12. Kategori","13. Kategori","14. Kategori","15. Kategori","16. Kategori","17. Kategori","18. Kategori","19. Kategori","20. Kategori"];
+  IsAlanlariModel isAlanlariModel = IsAlanlariModel();
+  final List<String> imagePaths = [
+    'assets/image.png',
+    'assets/asd.jpeg',
+    'assets/image.png',
+    'assets/asd.jpeg'
+  ];
+
   KategorilerCenteredContent({super.key});
 
   @override
@@ -15,13 +19,16 @@ class KategorilerCenteredContent extends StatelessWidget {
     return Center(
       child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2, // Her satırda 2 resim
+          crossAxisCount: 2,
         ),
-        itemCount: 20,
+        itemCount: 4,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-              Get.to(Kategori(title: kategoriAdlari[index]));
+              Get.to(Kategori(
+                  title: isAlanlariModel.getAlanAdlari()[index],
+                  items: isAlanlariModel
+                      .alanlar[isAlanlariModel.getAlanAdlari()[index]]!));
               print('Tıklanan öğe indexi: $index');
             },
             child: Stack(
@@ -37,7 +44,7 @@ class KategorilerCenteredContent extends StatelessWidget {
                     color: Colors.black.withOpacity(0.7),
                     padding: EdgeInsets.all(4.0),
                     child: Text(
-                      kategoriAdlari[index],
+                      isAlanlariModel.getAlanAdlari()[index],
                       style: TextStyle(color: Colors.white),
                     ),
                   ),

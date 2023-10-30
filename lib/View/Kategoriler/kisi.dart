@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../Model/calisan_model.dart';
+import '../../Model/Çalışan/calisan_model.dart';
 import '../widgets.dart';
 
 class Kisi extends StatelessWidget {
@@ -29,7 +29,7 @@ class Kisi extends StatelessWidget {
               Text(c.saatlikUcret.toString()+"TL"),
               SizedBox(height: 15,),
               SizedBox(height: 15,),
-              EButton(onPressed: (){}, buttonText: "Mesaj Gönder")
+              EButton(onPressed: (){}, buttonText: "Mesaj Gönder", color: Colors.purple,)
             ],
           )
       ),

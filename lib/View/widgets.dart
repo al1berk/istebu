@@ -57,7 +57,7 @@ class EButton extends StatelessWidget {
   EButton({
     required this.onPressed,
     required this.buttonText,
-    this.color = Colors.black, // Varsayılan renk: Siyah
+    required this.color,
   });
 
   @override

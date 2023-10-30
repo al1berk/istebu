@@ -2,20 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
-import '../../Model/calisan_model.dart';
+import '../../Model/Çalışan/calisan_model.dart';
 import 'kisi.dart';
 
 class Kisiler extends StatelessWidget {
   String title ;
-  Kisiler({super.key , required this.title});
-  List<Calisan> calisanlar = [
-    Calisan("assets/asd.jpeg", 50, "Ahmet",["Mobil Uygulama"],"Bilgisayar mühendisi","ODTÜ"),
-    Calisan("assets/asd.jpeg", 50, "Mehmet",["Mobil Uygulama"],"Bilgisayar mühendisi","İTÜ"),
-    Calisan("assets/asd.jpeg", 100, "Ali",["Mobil Uygulama"],"Bilgisayar mühendisi","AKDÜ"),
-    Calisan("assets/asd.jpeg", 150, "Berk",["Mobil Uygulama"],"Bilgisayar mühendisi","AKDÜ"),
-    Calisan("assets/asd.jpeg", 200, "Zehra",["Mobil Uygulama"],"Bilgisayar mühendisi","AKDÜ"),
-
-  ];
+  Kisiler({super.key , required this.title, required this.calisanlar});
+  List<Calisan> calisanlar ;
 
   @override
   Widget build(BuildContext context) {
