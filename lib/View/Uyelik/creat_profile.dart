@@ -36,24 +36,35 @@ class _CreateProfileState extends State<CreateProfile> {
               const SizedBox(height: 20,),
               TextF(hintText: "İlçe", controller: _ilceController, borderColor: Colors.green, borderWidth: 3, textFieldWidth: 200,),
               const SizedBox(height: 20,),
-              EButton(onPressed: (){
-                musteri.il = _ilController.text;
-                musteri.ilce = _ilceController.text;
-                viewModel.addMusteri(musteri);
+              EButton(onPressed: () {
+                   if(_ilceController.text.isEmpty||_ilController.text.isEmpty) {
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return bosUyari();
+                    },
+                  );
+                }
+                   else {
+                     musteri.il = _ilController.text;
+                     musteri.ilce = _ilceController.text;
+                     viewModel.addMusteri(musteri);
+                     Get.offAll(
+                         const Ilanlar()
+                     );
+                   }
 
-                Get.offAll(
-                    const Ilanlar()
-                );
 
-              }, buttonText: "Sign In", color: Colors.purple,
+              }, buttonText: "Sign In", color: Colors.purple)
 
-              )
             ],
           )
       ),
     );
   }
 }
+
+
 
 
 
