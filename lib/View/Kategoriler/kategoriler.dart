@@ -22,11 +22,14 @@ class KategorilerCenteredContent extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
             onTap: () {
-
+              Get.to(Kategori(
+                  title: isAlanlariModel.getAlanAdlari()[index],
+                  items: isAlanlariModel
+                      .alanlar[isAlanlariModel.getAlanAdlari()[index]]!));
+              print('Tıklanan öğe indexi: $index');
             },
             child: Stack(
               children: [
-
                 Padding(padding: const EdgeInsets.only(top: 5),
                   child: Stack(
                     children: [

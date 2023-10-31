@@ -120,7 +120,8 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             EButton(
                               onPressed: () async {
-                                if(await signInOrRegister(_emailController.text, _passwordController.text)){
+                                if(
+                                await signInOrRegister(_emailController.text, _passwordController.text)){
                                   Get.offAll(const Ilanlar());
                                 }
                                 else{
