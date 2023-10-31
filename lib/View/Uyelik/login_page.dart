@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:istebu/Model/%C3%BCyelik%20i%C5%9Flemleri/eposta.dart';
 import 'package:istebu/View/ilanlar.dart';
 import 'package:istebu/View/Uyelik/sign_in_page.dart';
 import 'package:istebu/View/widgets.dart';
@@ -94,8 +95,8 @@ class _LoginPageState extends State<LoginPage> {
                             ),
                             const SizedBox(height: 20),
                             TextF(
-                              hintText: "E-Posta",
-                              controller: _emailController,
+                              hintText: "şifre",
+                              controller: _passwordController,
                               textFieldWidth: 240,
                               borderColor: Colors.green,
                               borderWidth: 4.0,
@@ -118,10 +119,16 @@ class _LoginPageState extends State<LoginPage> {
                               ],
                             ),
                             EButton(
-                              onPressed: () {
-                                Get.to(const Ilanlar());
+                              onPressed: () async {
+                                if(await signInOrRegister(_emailController.text, _passwordController.text)){
+                                  Get.offAll(const Ilanlar());
+                                }
+                                else{
+
+                                  }
+
                               },
-                              buttonText: "Log in",
+                              buttonText: "Giriş yap",
                               color: Colors.purple,
                             ),
                             const Text(
