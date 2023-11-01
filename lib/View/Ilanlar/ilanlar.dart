@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:istebu/View/profil.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
-import 'Kategoriler/kategoriler.dart';
+import '../Kategoriler/kategoriler.dart';
 
 class Ilanlar extends StatefulWidget {
   const Ilanlar({super.key});
@@ -21,6 +21,14 @@ class _IlanlarState extends State<Ilanlar> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text(baslik(_currentIndex)),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: () {
+
+            },
+          ),
+        ],
       ),
       body: _buildContentForIndex(_currentIndex),
       bottomNavigationBar:SalomonBottomBar(

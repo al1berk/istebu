@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:istebu/Model/%C3%BCyelik%20i%C5%9Flemleri/eposta.dart';
-import 'package:istebu/View/ilanlar.dart';
+import 'package:istebu/View/Ilanlar/ilanlar.dart';
 import 'package:istebu/View/Uyelik/sign_in_page.dart';
 import 'package:istebu/View/widgets.dart';
 

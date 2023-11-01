@@ -4,7 +4,7 @@ import 'package:istebu/View/widgets.dart';
 import '../../Model/Müşteri/musteri.dart';
 import '../../ViewModel/create_profile_view_model.dart';
 import 'creat_profile_two.dart';
-import '../ilanlar.dart';
+import '../Ilanlar/ilanlar.dart';
 
 class CreateProfile extends StatefulWidget {
   CreateProfile({super.key,required this.musteri});

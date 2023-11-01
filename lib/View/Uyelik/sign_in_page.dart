@@ -8,7 +8,7 @@ import 'package:istebu/ViewModel/create_profile_view_model.dart';
 import 'package:uuid/uuid.dart';
 import '../../Model/Çalışan/calisan_model.dart';
 import 'creat_profile_two.dart';
-import '../ilanlar.dart';
+import '../Ilanlar/ilanlar.dart';
 
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});

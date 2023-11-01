@@ -8,7 +8,7 @@ import 'package:istebu/ViewModel/create_profile_view_model.dart';
 import 'package:multi_select_flutter/dialog/multi_select_dialog_field.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
 
-import '../ilanlar.dart';
+import '../Ilanlar/ilanlar.dart';
 
 class CreateProfileTwo extends StatefulWidget {
   Calisan calisan;
