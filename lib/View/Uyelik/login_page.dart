@@ -19,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool isChecked = false;
+  String errorMessage = '';
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +34,9 @@ class _LoginPageState extends State<LoginPage> {
             children: [
               Positioned(
                 left: -100, // Move to the left
-                top: -66, // Move to the top
+                top: -81, // Move to the top
                 child: Transform.rotate(
-                  angle: -25 * 3.14159265359 / 180,
+                  angle: -20 * 3.14159265359 / 180,
                   // Rotate 45 degrees to the left
                   child: ClipPath(
                     clipper: WaveClipper(),
@@ -48,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               Positioned(
-                top: -70, // Adjust the top position for the circle
+                top: -80, // Adjust the top position for the circle
                 right: -70, // Adjust the right position for the circle
                 child: Container(
                   width: 180,
@@ -91,15 +92,15 @@ class _LoginPageState extends State<LoginPage> {
                               controller: _emailController,
                               textFieldWidth: 240,
                               borderColor: Colors.green,
-                              borderWidth: 4.0,
+                              borderWidth: 5.0,
                             ),
-                            const SizedBox(height: 20),
+                            const SizedBox(height: 15),
                             TextF(
-                              hintText: "şifre",
+                              hintText: "Şifre",
                               controller: _passwordController,
                               textFieldWidth: 240,
                               borderColor: Colors.green,
-                              borderWidth: 4.0,
+                              borderWidth: 5.0,
                             ),
                             const SizedBox(width: 20),
                             Row(
@@ -124,21 +125,31 @@ class _LoginPageState extends State<LoginPage> {
                                 await signInOrRegister(_emailController.text, _passwordController.text)){
                                   Get.offAll(const Ilanlar());
                                 }
-                                else{
+                                else {
+                                  setState(() {
+                                    errorMessage = "E-posta veya şifre hatalı";
+
+                                  });
 
                                   }
 
+
                               },
+
                               buttonText: "Giriş yap",
                               color: Colors.purple,
                             ),
+
+
                             const Text(
+
                               "Or",
                               style: TextStyle(
                                 fontSize:
                                     20, // Set the font size to your desired value
                               ),
                             ),
+                            SizedBox(height: 9,),
                             GestureDetector(
                                 onTap: () {},
                                 child: Container(
@@ -148,7 +159,7 @@ class _LoginPageState extends State<LoginPage> {
                                     border: Border.all(width: 0.0),
                                   ),
                                   child: const Padding(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: EdgeInsets.all(9.0),
                                     // Adjust the padding as needed
                                     child: Icon(
                                       BoxIcons.bxl_google,
@@ -183,11 +194,15 @@ class _LoginPageState extends State<LoginPage> {
                           ],
                         ),
                         const Column(
+
                           children: [
+                            SizedBox(height: 26,),
                             Text(
-                              "Let's",
+                              " Let's",
                               style:
-                                  TextStyle(fontSize: 40, color: Colors.green),
+                                  TextStyle(fontSize: 39,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.green),
                             ),
                             SizedBox(
                               height: 10,
@@ -195,23 +210,32 @@ class _LoginPageState extends State<LoginPage> {
                             Text(
                               "Get",
                               style:
-                                  TextStyle(fontSize: 40, color: Colors.green),
+                                  TextStyle(fontSize: 40,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.green
+                                  ),
                             ),
                             SizedBox(
                               height: 10,
                             ),
                             Text(
-                              "Started",
+                              "Started!",
                               style:
-                                  TextStyle(fontSize: 40, color: Colors.green),
+                                  TextStyle(fontSize: 38,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.green),
+
                             ),
                             SizedBox(
                               height: 200,
                             )
                           ],
+
+
                         )
                       ],
                     ),
+
                   ],
                 ),
               ),
