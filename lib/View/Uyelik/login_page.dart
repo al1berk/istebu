@@ -5,7 +5,6 @@ import 'package:istebu/Model/%C3%BCyelik%20i%C5%9Flemleri/eposta.dart';
 import 'package:istebu/View/Ilanlar/ilanlar.dart';
 import 'package:istebu/View/Uyelik/sign_in_page.dart';
 import 'package:istebu/View/widgets.dart';
-
 import 'creat_profile.dart';
 
 class LoginPage extends StatefulWidget {
@@ -20,6 +19,9 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _passwordController = TextEditingController();
   bool isChecked = false;
   String errorMessage = '';
+  String passwordError = '';
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -102,6 +104,13 @@ class _LoginPageState extends State<LoginPage> {
                               borderColor: Colors.green,
                               borderWidth: 5.0,
                             ),
+                            Text(
+                              errorMessage,
+                              style: const TextStyle(color: Colors.red,
+                                  fontSize: 16
+
+                              ),
+                            ),
                             const SizedBox(width: 20),
                             Row(
                               children: [
@@ -113,12 +122,20 @@ class _LoginPageState extends State<LoginPage> {
                                     });
                                   },
                                 ),
+
+
+
+
+
+
+
                                 const Text(
                                   'Beni Hatırla',
                                   style: TextStyle(fontSize: 16),
                                 ),
                               ],
                             ),
+
                             EButton(
                               onPressed: () async {
                                 if(
@@ -128,7 +145,6 @@ class _LoginPageState extends State<LoginPage> {
                                 else {
                                   setState(() {
                                     errorMessage = "E-posta veya şifre hatalı";
-
                                   });
 
                                   }
@@ -142,14 +158,13 @@ class _LoginPageState extends State<LoginPage> {
 
 
                             const Text(
-
                               "Or",
                               style: TextStyle(
                                 fontSize:
                                     20, // Set the font size to your desired value
                               ),
                             ),
-                            SizedBox(height: 9,),
+                            const SizedBox(height: 9,),
                             GestureDetector(
                                 onTap: () {},
                                 child: Container(
@@ -243,4 +258,7 @@ class _LoginPageState extends State<LoginPage> {
           )),
     );
   }
+
+
+
 }
