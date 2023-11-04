@@ -2,6 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:istebu/Model/%C3%BCyelik%20i%C5%9Flemleri/local_depo.dart';
 import 'package:istebu/Model/M%C3%BC%C5%9Fteri/musteri.dart';
 import 'package:istebu/View/Uyelik/creat_profile.dart';
 import 'package:istebu/View/widgets.dart';
@@ -26,9 +27,19 @@ class _SigninPageState extends State<SigninPage> {
   bool isChecked = false;
   bool isChecked2 = false;
   CreateProfileViewModel viewModel = CreateProfileViewModel();
-  File? _selectedImage;
+  String? _selectedImage;
+  File? f ;
+  LocalData localData = LocalData();
 
 
+
+@override
+void initState() {
+  super.initState();
+  loadSelectedImage();
+
+
+}
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +83,9 @@ class _SigninPageState extends State<SigninPage> {
                       children: [
                         Stack(children: [
                           ProfilResmiWidget(
-                            c: _selectedImage,
+                            c: f,
+
+
                           ),
                           Positioned(
                             bottom: 0.0,
@@ -284,7 +297,10 @@ class _SigninPageState extends State<SigninPage> {
 
     if (pickedFile != null) {
       setState(() {
-        _selectedImage = File(pickedFile.path);
+        _selectedImage = pickedFile.path;
+        f = File(pickedFile.path);
+        LocalData.saveSelectedImage(pickedFile.path);
+
       });
     }
   }
@@ -293,7 +309,10 @@ class _SigninPageState extends State<SigninPage> {
 
     if (pickedFile != null) {
       setState(() {
-        _selectedImage = File(pickedFile.path);
+        _selectedImage = pickedFile.path;
+        f = File(pickedFile.path);
+        LocalData.saveSelectedImage(pickedFile.path);
+
       });
     }
   }
@@ -326,6 +345,22 @@ class _SigninPageState extends State<SigninPage> {
       },
     );
   }
+Future<void> loadSelectedImage() async {
+  _selectedImage = await LocalData.getSelectedImage();
+  if(_selectedImage != null) {
+    if(_selectedImage != null) {
+      setState(() {
+        f = File(_selectedImage!);
+      });
+
+    }
+  }
+  else {
+    print("bostu");
+  }
+
+}
+
 }
 
 
