@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:istebu/Model/M%C3%BC%C5%9Fteri/musteri.dart';
 import 'package:istebu/View/Uyelik/creat_profile.dart';
 import 'package:istebu/View/widgets.dart';
@@ -8,8 +9,7 @@ import 'package:istebu/ViewModel/create_profile_view_model.dart';
 import 'package:uuid/uuid.dart';
 import '../../Model/Çalışan/calisan_model.dart';
 import 'creat_profile_two.dart';
-import '../Ilanlar/ilanlar.dart';
-
+import 'dart:io';
 class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
 
@@ -26,6 +26,8 @@ class _SigninPageState extends State<SigninPage> {
   bool isChecked = false;
   bool isChecked2 = false;
   CreateProfileViewModel viewModel = CreateProfileViewModel();
+  File? _selectedImage;
+
 
   @override
   Widget build(BuildContext context) {
@@ -66,11 +68,25 @@ class _SigninPageState extends State<SigninPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    const Column(
+                     Column(
                       children: [
-                        ProfilResmiWidget(
-                          c: null,
-                        ),
+                        Stack(children: [
+                          ProfilResmiWidget(
+                            c: _selectedImage,
+                          ),
+                          Positioned(
+                            bottom: 0.0,
+                            right: 0.0,
+                            child: IconButton(
+                              onPressed: () => _showImagePickerDialog(context),
+                              icon: Icon(
+                                Icons.camera_alt,
+                                size: 50, // Simgenin boyutunu istediğiniz değerle değiştirin
+                              ),
+                            )
+                          ),
+                        ],),
+
                         Text(
                           "   Profil\nFotoğrafı",
                           style: TextStyle(
@@ -263,4 +279,55 @@ class _SigninPageState extends State<SigninPage> {
       ),
     );
   }
+  Future<void> _pickImage() async {
+    final pickedFile = await ImagePicker().getImage(source: ImageSource.gallery);
+
+    if (pickedFile != null) {
+      setState(() {
+        _selectedImage = File(pickedFile.path);
+      });
+    }
+  }
+  Future<void> _captureImage() async {
+    final pickedFile = await ImagePicker().getImage(source: ImageSource.camera);
+
+    if (pickedFile != null) {
+      setState(() {
+        _selectedImage = File(pickedFile.path);
+      });
+    }
+  }
+
+  Future<void> _showImagePickerDialog(BuildContext context) async {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              leading: Icon(Icons.photo_library),
+              title: Text('Galeriden Seç'),
+              onTap: () {
+                Navigator.pop(context);
+                _pickImage();
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.camera_alt),
+              title: Text('Kameradan Çek'),
+              onTap: () {
+                Navigator.pop(context);
+                _captureImage();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
+
+
+
+

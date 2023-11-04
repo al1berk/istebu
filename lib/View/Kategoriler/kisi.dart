@@ -18,7 +18,7 @@ class Kisi extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ProfilResmiWidget(c: c.imageUrl),
+              //ProfilResmiWidget(c: c.imageUrl),
               SizedBox(height: 15,),
               Text(c.isim),
               SizedBox(height: 15,),

@@ -1,5 +1,5 @@
 import 'dart:math';
-
+import 'dart:io';
 import 'package:flutter/material.dart';
 
 class TextF extends StatelessWidget {
@@ -82,29 +82,29 @@ class ProfilResmiWidget extends StatelessWidget {
     required this.c,
   });
 
-  final String? c;
+  final File? c;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 150, // Genişlik
-      height: 150, // Yükseklik
+      width: 150,
+      height: 150,
       decoration: const BoxDecoration(
-        shape: BoxShape.circle, // Yuvarlak şekil
-        color: Colors.blue, // Daire rengi
+        shape: BoxShape.circle,
+        color: Colors.blue,
       ),
       child: ClipOval(
         child: c != null
-            ? Image.asset(
-          'assets/asd.jpeg', // Profil resminin yolunu belirtin
-          width: 150, // Genişlik
-          height: 150, // Yükseklik
-          fit: BoxFit.cover, // İmajın boyutunu ayarlar
+            ? Image.file(
+          c!,
+          width: 150,
+          height: 150,
+          fit: BoxFit.cover,
         )
             : const Icon(
-          Icons.person, // Daire içinde gösterilecek simge
-          size: 80, // Simge boyutu
-          color: Colors.white, // Simge rengi
+          Icons.person,
+          size: 80,
+          color: Colors.white,
         ),
       ),
     );
@@ -191,3 +191,4 @@ class bosUyari extends StatelessWidget {
     );
   }
 }
+
