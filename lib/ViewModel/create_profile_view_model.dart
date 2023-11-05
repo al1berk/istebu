@@ -14,7 +14,7 @@ class CreateProfileViewModel {
       CollectionReference alanCollection = firestore.collection(alan);
       Map<String, dynamic> calisanData = calisan.toMap();
       await alanCollection
-          .doc("${calisan.isim} ${calisan.soyisim} ${calisan.id}")
+          .doc(calisan.id)
           .set(calisanData);
     }
   }
@@ -23,7 +23,7 @@ class CreateProfileViewModel {
     CollectionReference musteriCollection = firestore.collection("isverenler");
     Map<String,dynamic> musteriData = musteri.toMap();
     await musteriCollection
-        .doc("${musteri.isim} ${musteri.soyisim} ${musteri.id}")
+        .doc(musteri.id)
         .set(musteriData);
 
   }

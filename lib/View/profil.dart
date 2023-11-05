@@ -4,6 +4,7 @@ import 'package:istebu/Model/%C3%BCyelik%20i%C5%9Flemleri/local_depo.dart';
 import 'package:istebu/ViewModel/create_profile_view_model.dart';
 
 import 'package:flutter/material.dart';
+import 'package:istebu/ViewModel/profil_view_model.dart';
 
 class ProfilCenteredContent extends StatefulWidget {
   @override
@@ -11,11 +12,13 @@ class ProfilCenteredContent extends StatefulWidget {
 }
 
 class _ProfilCenteredContentState extends State<ProfilCenteredContent> {
-
+ProfilViewModel viewModel = ProfilViewModel();
+String? i ;
   @override
   void initState() {
     super.initState();
     getID();
+   getData();
   }
 
   @override
@@ -77,8 +80,16 @@ class _ProfilCenteredContentState extends State<ProfilCenteredContent> {
   Future<String> getID() async {
     String? id = await LocalData.getUid();
     print(id);
+    i = id;
+    print("i"+i!);
     return id!;
-
+  }
+  getData() async {
+    if(getID() != null) {
+      print("ife girdi");
+      String tempID =await getID();
+      viewModel.getIsverenlerData(tempID);
+    }
   }
 }
 
