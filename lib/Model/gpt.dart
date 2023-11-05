@@ -44,10 +44,6 @@ void main() async {
     stdout.write('User: ');
     message = stdin.readLineSync()!;
 
-    if (message.toLowerCase() == 'çık') {
-      break;
-    }
-
     if (message.isNotEmpty) {
       messages.add({"role": "user", "content": message});
       final chat = await gpt.getChatCompletion(messages);
@@ -63,5 +59,5 @@ void main() async {
       final ucret = (tokenCount / 1000) * 0.002 * 28.40;
       print('$ucret TL');
     }
-  } while (true);
+  } while (message.toLowerCase() != "cik");
 }

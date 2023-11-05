@@ -44,8 +44,18 @@ class CreateProfileViewModel {
   Future uploadPic(String path) async {
     String fileName = path;
     Reference firebaseStorageRef =
-    FirebaseStorage.instance.ref().child('çekilen_fotograflar/$fileName');
+    FirebaseStorage.instance.ref().child('çekilen_fotograflar/deneme');
     UploadTask uploadTask = firebaseStorageRef.putFile(File(path));
     TaskSnapshot taskSnapshot = await uploadTask;
+  }
+  Future<String?> getImageUrl(String imagePath) async {
+    try {
+      Reference reference = FirebaseStorage.instance.ref().child(imagePath);
+      String downloadURL = await reference.getDownloadURL();
+      return downloadURL;
+    } catch (e) {
+      print('Resim çekme hatası: $e');
+      return null;
+    }
   }
 }
