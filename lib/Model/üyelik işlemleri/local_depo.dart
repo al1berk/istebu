@@ -97,7 +97,7 @@ class LocalData {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       print("çekme başarılı");
-
+      print(prefs.getString('selectedImage'));
       return prefs.getString('selectedImage');
     } catch (e) {
       print('Hata oluştu: $e');

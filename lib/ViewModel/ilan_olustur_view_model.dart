@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import '../Model/Müşteri/ilan.dart';
 
@@ -12,4 +13,5 @@ class   IlanOlusturViewModel {
         .doc("${ilan.baslik} ${ilan.ilanID} ")
         .set(ilanData);
   }
+
 }

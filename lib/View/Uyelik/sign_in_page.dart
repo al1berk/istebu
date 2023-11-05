@@ -1,7 +1,9 @@
 import 'dart:math';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:istebu/Model/%C3%BCyelik%20i%C5%9Flemleri/fotograf_ekle.dart';
 import 'package:istebu/Model/%C3%BCyelik%20i%C5%9Flemleri/local_depo.dart';
 import 'package:istebu/Model/M%C3%BC%C5%9Fteri/musteri.dart';
 import 'package:istebu/View/Uyelik/creat_profile.dart';
@@ -300,6 +302,7 @@ void initState() {
         _selectedImage = pickedFile.path;
         f = File(pickedFile.path);
         LocalData.saveSelectedImage(pickedFile.path);
+        viewModel.uploadPic(pickedFile.path);
 
       });
     }
@@ -312,6 +315,8 @@ void initState() {
         _selectedImage = pickedFile.path;
         f = File(pickedFile.path);
         LocalData.saveSelectedImage(pickedFile.path);
+        viewModel.uploadPic(pickedFile.path);
+
 
       });
     }

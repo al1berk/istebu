@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:istebu/Model/M%C3%BC%C5%9Fteri/musteri.dart';
 import '../Model/Çalışan/calisan_model.dart';
+import 'dart:io';
 
 class CreateProfileViewModel {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -38,5 +40,12 @@ class CreateProfileViewModel {
     }
 
     return calisanlar;
+  }
+  Future uploadPic(String path) async {
+    String fileName = path;
+    Reference firebaseStorageRef =
+    FirebaseStorage.instance.ref().child('çekilen_fotograflar/$fileName');
+    UploadTask uploadTask = firebaseStorageRef.putFile(File(path));
+    TaskSnapshot taskSnapshot = await uploadTask;
   }
 }
