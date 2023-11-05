@@ -15,8 +15,8 @@ class CreateProfile extends StatefulWidget {
 }
 
 class _CreateProfileState extends State<CreateProfile> {
-  TextEditingController _ilController = TextEditingController();
-  TextEditingController _ilceController = TextEditingController();
+  final TextEditingController _ilController = TextEditingController();
+  final TextEditingController _ilceController = TextEditingController();
   CreateProfileViewModel viewModel = CreateProfileViewModel();
 
   Musteri musteri;

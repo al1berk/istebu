@@ -4,6 +4,8 @@ import 'package:istebu/Model/M%C3%BC%C5%9Fteri/musteri.dart';
 import '../Model/Çalışan/calisan_model.dart';
 import 'dart:io';
 
+import '../Model/üyelik işlemleri/local_depo.dart';
+
 class CreateProfileViewModel {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -41,10 +43,10 @@ class CreateProfileViewModel {
 
     return calisanlar;
   }
-  Future uploadPic(String path) async {
-    String fileName = path;
+  Future uploadPic(String path,String id) async {
+
     Reference firebaseStorageRef =
-    FirebaseStorage.instance.ref().child('çekilen_fotograflar/deneme');
+    FirebaseStorage.instance.ref().child('çekilen_fotograflar/$id');
     UploadTask uploadTask = firebaseStorageRef.putFile(File(path));
     TaskSnapshot taskSnapshot = await uploadTask;
   }
@@ -57,5 +59,11 @@ class CreateProfileViewModel {
       print('Resim çekme hatası: $e');
       return null;
     }
+  }
+  Future<String?> getID() async {
+   String? id = await LocalData.getUid();
+   print("idddddd"+id!);
+
+    return id;
   }
 }

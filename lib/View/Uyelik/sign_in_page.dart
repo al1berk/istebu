@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:istebu/Model/%C3%BCyelik%20i%C5%9Flemleri/fotograf_ekle.dart';
+import 'package:istebu/Model/%C3%BCyelik%20i%C5%9Flemleri/eposta.dart';
 import 'package:istebu/Model/%C3%BCyelik%20i%C5%9Flemleri/local_depo.dart';
 import 'package:istebu/Model/M%C3%BC%C5%9Fteri/musteri.dart';
 import 'package:istebu/View/Uyelik/creat_profile.dart';
@@ -229,7 +229,8 @@ void initState() {
                   visible: isChecked || isChecked2,
                   // Eğer control false ise görünmez, true ise görünür
                   child: EButton(
-                    onPressed: () {
+                    onPressed: () async {
+
                       if (isimController.text.isEmpty ||
                           soyisimController.text.isEmpty ||
                           numaraController.text.isEmpty ||
@@ -244,9 +245,11 @@ void initState() {
                         );
                       } else {
                         // Tüm alanlar doldurulmuş, devam et
-                        const uuid = Uuid();
-                        String uniqueId = uuid.v4();
+
                         if (isChecked2) {
+                          String? id = await register(emailController.text, passwordController.text) ?? "";
+                          viewModel.uploadPic(_selectedImage!,id);
+
                           Calisan c = Calisan(
                             "",
                             0,
@@ -257,13 +260,16 @@ void initState() {
                             "",
                             numaraController.text,
                             [],
-                            uniqueId,
+                            id,
                           );
                           Get.to(CreateProfileTwo(
                             calisan: c,
                           ));
                         }
                         if (isChecked) {
+                          String? id = await register(emailController.text, passwordController.text) ?? "";
+                          viewModel.uploadPic(_selectedImage!,id);
+
                           Musteri m = Musteri(
                             isimController.text,
                             soyisimController.text,
@@ -271,7 +277,7 @@ void initState() {
                             "",
                             "",
                             emailController.text,
-                            "",
+                            id,
                             [],
                           );
 
@@ -302,7 +308,6 @@ void initState() {
         _selectedImage = pickedFile.path;
         f = File(pickedFile.path);
         LocalData.saveSelectedImage(pickedFile.path);
-        viewModel.uploadPic(pickedFile.path);
 
       });
     }
@@ -315,7 +320,6 @@ void initState() {
         _selectedImage = pickedFile.path;
         f = File(pickedFile.path);
         LocalData.saveSelectedImage(pickedFile.path);
-        viewModel.uploadPic(pickedFile.path);
 
 
       });
